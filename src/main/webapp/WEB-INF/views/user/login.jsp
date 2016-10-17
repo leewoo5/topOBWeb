@@ -20,7 +20,7 @@ input {margin-bottom: 10px;}
 </style>
 </head>
 <body>
-	<c:if test="${user.uid == null}">
+	<c:if test="${empty sessionScope.user}">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-1 col-sm-5 sidenav"></div>
@@ -47,13 +47,6 @@ input {margin-bottom: 10px;}
 								<button type="submit" class="btn btn-primary btns">완료</button>
 							</div>
 						</div>
-						<c:if test="${not empty result}">
-							<script type="text/javascript">
-								var result = '${result}';
-								alert(result);
-								location.href="/";
-							</script>
-						</c:if>
 					</form>
 					
 					<div class="btn-group btn-group-justified">
@@ -61,7 +54,7 @@ input {margin-bottom: 10px;}
 							<a id="backtohome" class="form-control text-center" href="/">돌아가기</a>
 						</div>
 						<div class="btn-group">
-							<a id="register" class="form-control text-center" href="/">회원가입</a>
+							<a id="register" class="form-control text-center" href="/member/form">회원가입</a>
 						</div>
 
 					</div>
@@ -72,7 +65,7 @@ input {margin-bottom: 10px;}
 		</div>
 	</c:if>
 	
-	<c:if test="${user.uid != null }">
+	<c:if test="${not empty sessionScope.user}">
 	<script type="text/javascript">
 		location.href = "/";
 	</script>

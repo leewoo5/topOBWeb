@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public User findByUserId(LoginDTO dto) throws Exception {
 
-    return dao.FindByUserId(dto);
+    return dao.findByUserId(dto);
   }
   
   @Override

@@ -64,7 +64,7 @@ footer .timeline{padding-bottom: 5%;}
 					<div id="content"></div>
 					
 					<!-- 로그인 안 했을 때 -->
-					<c:if test="${User.uid == null}">
+					<c:if test="${empty sessionScope.user}">
 					<div class="signs btn-group btn-group-justified">
 						<div class="btn-group">
 							<a class="sign btn btn-primary btns" href="/user/login">로그인</a>
@@ -76,10 +76,10 @@ footer .timeline{padding-bottom: 5%;}
 					</c:if>
 					
 					<!-- 로그인 했을 때 -->
-					<c:if test="${User.uid != null}">
+					<c:if test="${not empty sessionScope.user}">
 					<div class="signs btn-group btn-group-justified">
 						<div class="btn-group">
-							<a class="sign btn btns"><span id="nickName">${User.nickName}</span></a>
+							<a class="sign btn btns"><span id="nickName">${sessionScope.user}</span></a>
 						</div>
 						<div class="btn-group">
 							<a class="sign btn btns" href="#">나의 정보</a>
@@ -110,7 +110,7 @@ footer .timeline{padding-bottom: 5%;}
 						</div>
 					</div>
 					
-					<c:if test="${not empty User.uid}">
+					<c:if test="${not empty sessionScope.user}">
 						<footer>
 							<div class="timeline">
 								<div class="signs btn-group btn-group-justified">
@@ -124,11 +124,13 @@ footer .timeline{padding-bottom: 5%;}
 							</div>
 						</footer>
 					</c:if>
-					<c:if test="${empty User.uid}">
+					<c:if test="${empty sessionScope.user }">
 						<footer>
-							<div class="signs btn-group btn-group-justified">
-								<div class="btn-group">
-									<a href="/member/form" class="sign btn btns">BookStory 시작하기</a>
+							<div class="timeline">
+								<div class="signs btn-group btn-group-justified">
+									<div class="btn-group">
+										<a href="/member/form" class="sign btn btns">BookStory 시작하기</a>
+									</div>
 								</div>
 								<p id="copyright" class="btn-group-justified text-center">
 									Copyright. BOOKSTORY all rights reserved.
@@ -143,6 +145,5 @@ footer .timeline{padding-bottom: 5%;}
 			</div>
 		</div>
 	<!-- wrapper end -->
-	</div>	
 </body>
 </html>

@@ -35,8 +35,8 @@ public class LoginController {
 	public String loginPOST(LoginDTO dto, HttpSession session, Model model) throws Exception {
 	  
 	
-	   User user = new User();
-	   user = service.findByUserId(dto);
+	   
+	   User user = service.findByUserId(dto);
 	  
 	   if (user == null) {
 		   logger.info("존재하지 않는 아이디");
@@ -49,16 +49,23 @@ public class LoginController {
 		   return "/user/login";
 	   }
 	   logger.info("로그인 성공");
-	   model.addAttribute("result", "로그인이 성공했습니다.");
-	   session.setAttribute("User", user);
+	   session.setAttribute("user", user.getNickName());
 
-	   if (dto.isUseCookie()) {
-		   int amount = 60 * 60 * 24 * 7;
-		   Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
-		   service.keepLogin(user.getUid(), session.getId(), sessionLimit);
-		}
+//	   if (dto.isUseCookie()) {
+//		   int amount = 60 * 60 * 24 * 7;
+//		   Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+//		   service.keepLogin(user.getUid(), session.getId(), sessionLimit);
+//		}
 	   
-	   return null;
+	   return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/logout")
+	public String logOut(HttpSession session) throws Exception {
+		
+		session.removeAttribute("user");
+		
+		return "redirect:/";
 	}
 
 }

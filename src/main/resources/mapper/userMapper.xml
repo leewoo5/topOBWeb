@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="findByUserId" resultType="org.zerock.domain.User">
 
-		select uid, upw, nickName from tbl_user where uid = #{uid}
+		select uid, upw, nickName, email from tbl_user where uid = #{uid}
 
 	</select>
 

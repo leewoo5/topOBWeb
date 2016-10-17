@@ -19,7 +19,7 @@ input {margin-bottom: 10px;}
 </style>
 </head>
 <body>
-	<c:if test="${login.uid == null}">
+	<c:if test="${empty sessionScop.user}">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-1 col-sm-5 sidenav"></div>
@@ -27,16 +27,16 @@ input {margin-bottom: 10px;}
 					<div class="space"></div>
 					<form action="/member/form" role="form" method="post">
 						<label for="id">ID</label>
-						<input class="form-control" id="id" name="uid" type="text" value="dsa"/>
+						<input class="form-control" id="id" name="uid" type="text" value="user"/>
 						
 						<label for="pw">Password</label>
-						<input class="form-control" id="pw" name="upw" type="password" value="dsa"/>
+						<input class="form-control" id="pw" name="upw" type="password" value="1234"/>
 						
 						<label for="nickName">NickName</label>
-						<input class="form-control" id="nickName" name="nickName" type="text" value="dsa"/>
+						<input class="form-control" id="nickName" name="nickName" type="text" value="user"/>
 						
 						<label for="email">Email</label>
-						<input class="form-control" id="email" name="email" type="email" value="dsa@gmail.com"/>
+						<input class="form-control" id="email" name="email" type="email" value="user@gmail.com"/>
 			
 						<div class="btn-group btn-group-justified">
 							<div class="btn-group">
@@ -56,7 +56,7 @@ input {margin-bottom: 10px;}
 		</div>
 	</c:if>
 	
-	<c:if test="${login.uid != null }">
+	<c:if test="${not empty sessionScope.user}">
 	<script type="text/javascript">
 		location.href = "/";
 	</script>

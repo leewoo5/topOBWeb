@@ -20,7 +20,7 @@ public class UserDAOImpl implements UserDAO {
 	private static String namespace ="org.zerock.mapper.userMapper";	
 
 	@Override
-	public User FindByUserId(LoginDTO dto) throws Exception {
+	public User findByUserId(LoginDTO dto) throws Exception {
 		
 		return session.selectOne(namespace +".findByUserId", dto);
 	}

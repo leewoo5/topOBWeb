@@ -7,7 +7,7 @@ import org.zerock.dto.LoginDTO;
 
 public interface UserDAO {
 
-	public User FindByUserId(LoginDTO dto)throws Exception;
+	public User findByUserId(LoginDTO dto)throws Exception;
 
 	public void keepLogin(String uid, String sessionId, Date next);
   
