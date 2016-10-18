@@ -1,12 +1,12 @@
 package org.zerock.domain;
 
-public class User {
-
+public class UserRegisterVO {
+	
+  
   private String uid;
   private String upw;
   private String nickName;
   private String email;
-  private int upoint;
 
   public String getEmail() {
 	return email;
@@ -40,16 +40,8 @@ public String getUid() {
     this.nickName = nickName;
   }
 
-  public int getUpoint() {
-    return upoint;
-  }
-
-  public void setUpoint(int upoint) {
-    this.upoint = upoint;
-  }
-
   @Override
   public String toString() {
-    return "User [uid=" + uid + ", upw=" + upw + ", nickName=" + nickName + ", email=" + email + ", upoint=" + upoint + "]";
+    return "User [uid=" + uid + ", upw=" + upw + ", nickName=" + nickName + ", email=" + email + "]";
   }
 }

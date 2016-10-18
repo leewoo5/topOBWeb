@@ -25,18 +25,22 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>appServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+<!--   스프링 폼태그에서 히든값으로 사용되는 put 메소드 사용을 위한 설정 -->
   <filter>
     <filter-name>hiddenHttpMethodFilter</filter-name>
     <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>hiddenHttpMethodFilter</filter-name>
-    <url-pattern>/</url-pattern>
+	<servlet-name>appServlet</servlet-name>
   </filter-mapping>
+  
   <filter>
     <filter-name>encoding</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

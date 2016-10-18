@@ -5,7 +5,10 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import org.zerock.domain.User;
+import org.springframework.transaction.annotation.Transactional;
+import org.zerock.domain.UserRegisterVO;
+import org.zerock.domain.UserVO;
+import org.zerock.domain.UserUpdateVO;
 import org.zerock.dto.LoginDTO;
 import org.zerock.persistence.UserDAO;
 
@@ -16,7 +19,7 @@ public class UserServiceImpl implements UserService {
   private UserDAO dao;
 
   @Override
-  public User findByUserId(LoginDTO dto) throws Exception {
+  public UserVO findByUserId(LoginDTO dto) throws Exception {
 
     return dao.findByUserId(dto);
   }
@@ -30,8 +33,21 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User checkLoginBefore(String value) {
+  public UserVO checkLoginBefore(String value) {
     
     return dao.checkUserWithSessionKey(value);
   }
+  
+  @Transactional
+  @Override
+  public void register(UserRegisterVO member) throws Exception {
+	  dao.register(member);
+  }
+  
+  @Transactional
+  @Override
+  public void update(UserUpdateVO update) throws Exception {
+	  dao.update(update);
+  }
+  
 }

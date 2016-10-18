@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.zerock.mapper.userMapper">
 	
-	<select id="findByUserId" resultType="org.zerock.domain.User">
+	<select id="findByUserId" resultType="org.zerock.domain.UserVO">
 
 		select uid, upw, nickName, email from tbl_user where uid = #{uid}
 
@@ -18,10 +18,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</update>
 
-	<select id="checkUserWithSessionKey" resultType="org.zerock.domain.User">
+	<select id="checkUserWithSessionKey" resultType="org.zerock.domain.UserVO">
 	
 		select * from tbl_user where sessionKey = #{value} and sessionlimit > now()
 		
-	</select>	
+	</select>
+	
+	<insert id="register">
+		insert into tbl_user (uid, upw, nickName, email) values(#{uid}, #{upw}, #{nickName}, #{email})
+	</insert>
+
+	<insert id="update">
+		update tbl_user set uid=#{uid}, upw=#{upwNew1}, nickName=#{nickName}, email=#{email} where uid=#{uid} 
+	</insert>	
 	
 </mapper>

@@ -16,6 +16,7 @@ form label, input {	display: block;}
 input {margin-bottom: 10px;}
 .btns {border: 1px solid white; margin-top: 10%;}
 #backtohome, #register {color: white; font-size: 15px;	background-color: #004466; border: none; margin-bottom: 30%;}
+p{color: #0cf2ff;}
 [class*="col-"] {padding: 0px;}
 </style>
 </head>
@@ -28,9 +29,9 @@ input {margin-bottom: 10px;}
 					
 					<form action="/user/login" role="form" method="post">
 						<label for="id">ID</label>
-						<input class="form-control" id="id" name="uid" type="text"/>
+						<input class="form-control" id="id" name="uid" type="text" autofocus="autofocus"/>
 						<c:if test="${not empty errorId}">
-							<a>${errorId}</a>
+							<p>${errorId}</p>
 						</c:if>
 						
 						<label for="pw">Password</label>
@@ -54,7 +55,7 @@ input {margin-bottom: 10px;}
 							<a id="backtohome" class="form-control text-center" href="/">돌아가기</a>
 						</div>
 						<div class="btn-group">
-							<a id="register" class="form-control text-center" href="/member/form">회원가입</a>
+							<a id="register" class="form-control text-center" href="/user/form">회원가입</a>
 						</div>
 
 					</div>

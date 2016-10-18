@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
-import org.zerock.domain.User;
+import org.zerock.domain.UserVO;
 import org.zerock.service.UserService;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
@@ -37,7 +37,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
       
       if(loginCookie != null) { 
         
-        User userVO = service.checkLoginBefore(loginCookie.getValue());
+        UserVO userVO = service.checkLoginBefore(loginCookie.getValue());
         
         logger.info("USERVO: " + userVO);
         

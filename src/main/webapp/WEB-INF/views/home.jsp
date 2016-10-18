@@ -64,25 +64,25 @@ footer .timeline{padding-bottom: 5%;}
 					<div id="content"></div>
 					
 					<!-- 로그인 안 했을 때 -->
-					<c:if test="${empty sessionScope.user}">
+					<c:if test="${empty sessionScope.login}">
 					<div class="signs btn-group btn-group-justified">
 						<div class="btn-group">
 							<a class="sign btn btn-primary btns" href="/user/login">로그인</a>
 						</div>
 						<div class="btn-group">
-							<a class="sign btn btn-danger btns" href="/member/form">회원가입</a>
+							<a class="sign btn btn-danger btns" href="/user/form">회원가입</a>
 						</div>
 					</div>
 					</c:if>
 					
 					<!-- 로그인 했을 때 -->
-					<c:if test="${not empty sessionScope.user}">
+					<c:if test="${not empty sessionScope.login}">
 					<div class="signs btn-group btn-group-justified">
 						<div class="btn-group">
-							<a class="sign btn btns"><span id="nickName">${sessionScope.user}</span></a>
+							<a class="sign btn btns"><span id="nickName">${sessionScope.login.nickName}</span></a>
 						</div>
 						<div class="btn-group">
-							<a class="sign btn btns" href="#">나의 정보</a>
+							<a class="sign btn btns" href="user/${sessionScope.login.uid}/form">나의 정보</a>
 						</div>
 					</div>
 					</c:if>
@@ -110,7 +110,7 @@ footer .timeline{padding-bottom: 5%;}
 						</div>
 					</div>
 					
-					<c:if test="${not empty sessionScope.user}">
+					<c:if test="${not empty sessionScope.login}">
 						<footer>
 							<div class="timeline">
 								<div class="signs btn-group btn-group-justified">
@@ -124,12 +124,12 @@ footer .timeline{padding-bottom: 5%;}
 							</div>
 						</footer>
 					</c:if>
-					<c:if test="${empty sessionScope.user }">
+					<c:if test="${empty sessionScope.login}">
 						<footer>
 							<div class="timeline">
 								<div class="signs btn-group btn-group-justified">
 									<div class="btn-group">
-										<a href="/member/form" class="sign btn btns">BookStory 시작하기</a>
+										<a href="/user/form" class="sign btn btns">BookStory 시작하기</a>
 									</div>
 								</div>
 								<p id="copyright" class="btn-group-justified text-center">
