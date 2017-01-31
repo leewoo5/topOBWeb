@@ -6,7 +6,7 @@
 	<!-- <mapping decorator="/default-decorator.html"/> -->
 
 	<!-- Map decorators to path patterns. -->
-	<!-- <mapping path="/*" decorator="/WEB-INF/views/decorator/main_decorator.jsp"/> -->
+	<mapping path="/*" decorator="/WEB-INF/views/decorator/decorator.jsp"/>
 <!-- 	<mapping path="/" decorator="/WEB-INF/views/decorator/main_decorator.jsp" /> -->
 
 	<!-- <mapping path="/*.special.jsp" decorator="/special-decorator.html"/> -->

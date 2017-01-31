@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+/* 왼쪽 사이드 네비게이션   */
+@font-face{
+	font-family: 'NanumGothic';
+	src: url(/resources/NanumFont_TTF_ALL/NanumGothic.ttf) format('truetype');	
+}
+*{
+  font-family: NanumGothic;
+}
+textarea {
+      resize: none;
+  }
+.active{color: #1a8cff !important;}
+.list-group-item{background-color: #262626 !important; border: none !important;}
+.list_ad{border-bottom:2px solid #0d0d0d;}
+.list_ad li a{color: #666666;}
+.header{font-weight: bold; color: white;}
+.text-right{padding:0px;}
+.no-padding{padding: 0px !important;}
+#sideNav_admin{background-color: #262626;}
+#updateForm_admin{ padding:0px; }
+#wrapper{margin-top:5%; padding:20px;}
+#wrapper input, #wrapper textarea{border: none;}
+.adminNav{
+    height: 60px;
+    background-color: #595959;
+    color: #999999;
+    margin:0px !important;
+}
+.adminNav_right{
+    height: 60px;
+    padding: 15px;
+    background-color: #595959;
+    color: #999999;
+    margin:0px !important;
+}
+ul{padding: 0px;}
+ul li{list-style: none; margin-top:2%; margin-bottom:2%;}
+ul li a:hover{text-decoration: none; color: #1a8cff;}
+li{color: #4d4d4d;}
+.midnav{padding-top:5%;}
+.changeHeader{padding:1% 0% 1% 1%; border-bottom:2px solid #1a1a1a; font-weight: bold; }
+
+/* 테이블 */
+table{width: 100%;}
+th,td{border:1px solid #d9d9d9; height: 15px; }
+.table-title{width: 20%; text-align: left; font-weight: bold;}

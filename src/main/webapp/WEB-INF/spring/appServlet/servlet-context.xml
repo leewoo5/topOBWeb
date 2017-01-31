@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -25,7 +26,7 @@
 	</beans:bean>
 
 	<context:component-scan base-package="org.zerock.controller" />
-	<context:component-scan base-package="org.zerock.restcontroller" />
+	<context:component-scan base-package="org.zerock.restController" />
 	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -37,27 +38,23 @@
 		</beans:constructor-arg>
 	</beans:bean>
 
-	<beans:bean id="sampleInterceptor" class="org.zerock.interceptor.SampleInterceptor"></beans:bean>
-
 	<beans:bean id="authInterceptor" class="org.zerock.interceptor.AuthInterceptor"></beans:bean>
 
 	<beans:bean id="loginInterceptor" class="org.zerock.interceptor.LoginInterceptor"></beans:bean>
 
 	<interceptors>
-	
 		<interceptor>
 			<mapping path="/user/loginPost" />
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
-
+		<interceptor>
+			<mapping path="/obmember/listAll"/>
+			<mapping path="/obmember/memberInfo"/>
+			<mapping path="/obfinance/*"/>
+			<mapping path="/obnotice/*"/>
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
 	</interceptors>
-	
-	
 
-	<!-- <interceptor> 
-		<mapping path="/doA"/>
-		<mapping path="/doB"/> 
-		<beans:ref bean="sampleInterceptor"/>
-	</interceptor> -->
 
 </beans:beans>

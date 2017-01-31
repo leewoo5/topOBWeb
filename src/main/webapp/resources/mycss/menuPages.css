@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+/* 미들네비게이션   */
+.midnav{height: 5%; border-bottom:1px solid #a6a6a6; }
+
+/* 왼쪽사이드네비게이션 */
+  .list a{font-weight: bold;}
+  .list{padding:0px !important;}
+  .sidenav h4{font-weight: bold;}
+  .sidenav h4 a{color: black !important;}
+ .sidenav h3{padding:5% 5%; color: black;}
+ .sidenav li {list-style: none; padding:5% 5%;}
+ .sidenav a{text-decoration: none;}
+ .sidenav a:hover{color:#0086b3; }
+ .sidenav{height: 100%;}
+ .sidenav li a{color: #737373;}
+ #sideNav{border-right:1px solid #a6a6a6; padding-top:4%;}
+ #sideNav a{font-size: 13px;}
+ .sideHeader{padding-bottom:10px; }
+ .active{color:#1a8cff !important;}
+
+/* 메뉴로고 이미지 */
+ .menulogo{width: 100%; min-height: 250px; max-height: 250px; opacity:0.9;}
+
+/* 컨텐츠 타이틀 */
+#header{font-size: 30px; padding-top:2%; padding-bottom:2%; border-bottom:2px solid #0086b3;}
+

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.ObMemberMapper">
+	<select id="findByUserId" resultType="org.zerock.dto.LoginDTO">
+		select uid, upw, name, rights from tbl_obmember where uid = #{uid}
+	</select>
+
+	<update id="keepLogin">
+		update tbl_obmember set sessionKey = #{sessionId}, sessionLimit = #{next} where
+		uid = #{uid}
+	</update>
+
+	<select id="checkUserWithSessionKey" resultType="org.zerock.domain.Member_ob">
+		select * from tbl_obmember where sessionKey = #{value} and sessionlimit > now()
+	</select>	
+	<insert id="insertNewMember">
+		insert into tbl_obmember (uid, upw, birthday, major, address,
+								  stage, phone, gender,
+								  name, position, active, rights, regdate, jobid, jobid_etc, industry, industry_etc) 
+		values(#{uid}, #{upw}, #{birthday}, #{major}, #{address},
+								  #{stage}, #{phone}, #{gender},
+								  #{name}, #{position}, #{active}, #{rights}, now(),
+								  #{jobid}, #{jobid_etc}, #{industry}, #{industry_etc})
+	</insert>
+	<update id="update">
+		update tbl_obmember set
+		uid = #{uid}, upw = #{upw}, birthday = #{birthday}, major = #{major}, address = #{address},
+		jobid = #{jobid}, jobid_etc = #{jobid_etc}, industry = #{industry}, industry_etc = #{industry_etc}, stage = #{stage}, phone = #{phone}, 
+		gender = #{gender}, name = #{name},
+		position = #{position}, active = #{active}, rights = #{rights}
+		where uid = #{preUid}
+	</update>
+	<delete id="delete">
+		delete from tbl_obmember where uid = #{uid} 
+	</delete>
+	<select id="read" resultType="org.zerock.domain.Member_ob">
+		select *
+		from tbl_obmember
+		where uid = #{uid}
+	</select>
+	<select id="overview_members" resultType="int">
+		select count(name) as members 
+		from tbl_obmember
+	</select>
+	<select id="overview_business" resultType="int">
+		select count(major) as business 
+		from tbl_obmember
+		where major = '경영학과'
+	</select>
+	<select id="overview_etc" resultType="int">
+		select count(major) as etc
+		from tbl_obmember
+		where not major = '경영학과'
+	</select>
+	<select id="overview_male" resultType="int">
+		select count(gender) as male
+		from tbl_obmember
+		where gender = '남'
+	</select>
+	<select id="overview_female" resultType="int">
+		select count(gender) as female
+		from tbl_obmember
+		where gender = '여'
+	</select>
+	<sql id="search">
+		<if test="keyword!=null">
+			and name like CONCAT('%', #{keyword}, '%')
+			or uid like CONCAT('%', #{keyword}, '%')
+			or stage like CONCAT('%', #{keyword}, '%')
+			or major like CONCAT('%', #{keyword}, '%')
+			or phone like CONCAT('%', #{keyword}, '%')
+		</if>
+	</sql>
+	<select id="listSearch" resultType="org.zerock.domain.Member_ob">
+		select * 
+		from tbl_obmember
+		where uid is not null
+		<include refid="search"></include>
+		order by stage asc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+		select count(uid) 
+		from tbl_obmember 
+		where uid is not null
+		<include refid="search"></include>
+	</select>
+	<select id="presidentName" resultType="String">
+		select name 
+		from tbl_obmember
+		where position = 'p'
+	</select>
+	<select id="presidentPhone" resultType="String">
+		select phone 
+		from tbl_obmember
+		where position = 'p'
+	</select>
+	<select id="presidentStage" resultType="String">
+		select stage 
+		from tbl_obmember
+		where position = 'p'
+	</select>
+	<select id="vicePresidentName" resultType="String">
+		select name 
+		from tbl_obmember
+		where position = 'v'
+	</select>
+	<select id="vicePresidentPhone" resultType="String">
+		select phone 
+		from tbl_obmember
+		where position = 'v'
+	</select>
+	<select id="vicePresidentStage" resultType="String">
+		select stage 
+		from tbl_obmember
+		where position = 'v'
+	</select>
+	
+	<select id="marketing_job" resultType="int">
+		select count(jobid) 
+		from tbl_obmember 
+		group by jobid
+		having jobid = '마케팅'
+	</select>
+	<select id="finance_job" resultType="int">
+		select count(jobid) 
+		from tbl_obmember 
+		where jobid = '재무'
+	</select>
+	<select id="hr_job" resultType="int">
+		select count(jobid) 
+		from tbl_obmember 
+		where jobid = '인사'
+	</select>
+	<select id="ad_job" resultType="int">
+		select count(jobid) 
+		from tbl_obmember 
+		where jobid = '광고'
+	</select>
+	<select id="salse_job" resultType="int">
+		select count(jobid) 
+		from tbl_obmember 
+		where jobid = '영업'
+	</select>
+	<select id="etc_job" resultType="int">
+		select count(jobid) 
+		from tbl_obmember 
+		where jobid <![CDATA[ <> ]]> '마케팅'
+		and jobid <![CDATA[ <> ]]> '재무'
+		and jobid <![CDATA[ <> ]]> '인사'
+		and jobid <![CDATA[ <> ]]> '광고'
+		and jobid <![CDATA[ <> ]]> '영업'
+	</select>
+	<select id="beauty_industry" resultType="int">
+		select count(industry) 
+		from tbl_obmember 
+		where industry = '뷰티'
+	</select>
+	<select id="food_industry" resultType="int">
+		select count(industry) 
+		from tbl_obmember 
+		where industry = '식품'
+	</select>
+	<select id="it_industry" resultType="int">
+		select count(industry) 
+		from tbl_obmember 
+		where industry = '아이티'
+	</select>
+	<select id="distribute_industry" resultType="int">
+		select count(industry) 
+		from tbl_obmember 
+		where industry = '유통'
+	</select>
+	<select id="ad_industry" resultType="int">
+		select count(industry) 
+		from tbl_obmember 
+		where industry = '광고'
+	</select>
+	<select id="car_industry" resultType="int">
+		select count(industry) 
+		from tbl_obmember 
+		where industry = '자동차'
+	</select>
+	<select id="etc_industry" resultType="int">
+		select count(industry) 
+		from tbl_obmember 
+		where industry <![CDATA[ <> ]]> '뷰티'
+		and industry <![CDATA[ <> ]]> '식품'
+		and industry <![CDATA[ <> ]]> '아이티'
+		and industry <![CDATA[ <> ]]> '유통'
+		and industry <![CDATA[ <> ]]> '자동차'
+	</select>
+</mapper>

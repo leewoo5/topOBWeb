@@ -34,7 +34,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -57,6 +56,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>springloaded</artifactId>
+			<version>1.2.4.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -263,6 +268,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	<artifactId>Library</artifactId>
-	<name>project01</name>
+	<artifactId>top</artifactId>
+	<name>topWeb</name>
 </project>

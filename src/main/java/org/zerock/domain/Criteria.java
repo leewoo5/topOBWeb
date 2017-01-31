@@ -5,6 +5,7 @@ public class Criteria {
 	private int page;	
 	private int perPageNum;
 	private String uid;
+	
 	public String getUid() {
 		return uid;
 	}
